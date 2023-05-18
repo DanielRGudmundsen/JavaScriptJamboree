@@ -11,6 +11,7 @@ let questions = [
 let currentQuestionIndex = 0;
 let timer = null;
 let timeLeft = 0;
+let score = 0;
 
 document.getElementById('start-quiz').addEventListener('click', startQuiz);
 
@@ -25,17 +26,57 @@ function startQuiz() {
             endQuiz();
         } else {
             timeLeft--;
+            document.getElementById('timer').innerText = "Time left: " + timeLeft + "s"; // Update timer on screen
         }
     }, 1000);
 }
 
 function loadQuestion(index) {
-    console.log("Loading question: ", questions[index].question);
-    // TODO: display question and answers on screen
+    let question = questions[index];
+    let quizContent = document.getElementById('quiz-content');
+
+    // Clear existing content
+    quizContent.innerHTML = "";
+
+    // Show question
+    let questionElement = document.createElement('p');
+    questionElement.innerText = question.question;
+    quizContent.appendChild(questionElement);
+
+    // Show answers
+    for(let i = 0; i < question.answers.length; i++) {
+        let answerButton = document.createElement('button');
+        answerButton.innerText = question.answers[i];
+        answerButton.addEventListener('click', function() {
+            checkAnswer(question, question.answers[i]);
+        });
+        quizContent.appendChild(answerButton);
+    }
+}
+
+function checkAnswer(question, answer) {
+    if(question.correctAnswer === answer) {
+        score += 10; // add points to the score for a correct answer
+    } else {
+        timeLeft -= 10; // subtract time for an incorrect answer
+    }
+
+    // Move on to the next question
+    currentQuestionIndex++;
+    if(currentQuestionIndex >= questions.length || timeLeft <= 0) {
+        endQuiz();
+    } else {
+        loadQuestion(currentQuestionIndex);
+    }
 }
 
 function endQuiz() {
     clearInterval(timer);
     console.log("Quiz Ended!");
+
+    // Show final score
+    let quizContent = document.getElementById('quiz-content');
+    quizContent.innerHTML = "Your final score is: " + score;
+
     // TODO: allow user to enter initials and store score
 }
