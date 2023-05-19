@@ -78,5 +78,24 @@ function endQuiz() {
     let quizContent = document.getElementById('quiz-content');
     quizContent.innerHTML = "Your final score is: " + score;
 
-    // TODO: allow user to enter initials and store score
+    // Get user initials
+    let initials = prompt("Enter your initials:");
+
+    // Save score to local storage
+    let highscores = localStorage.getItem("highscores");
+    if(!highscores) {
+        highscores = [];
+    } else {
+        highscores = JSON.parse(highscores);
+    }
+
+    highscores.push({initials: initials, score: score});
+
+    // Keep top 5 scores
+    highscores.sort((a, b) => b.score - a.score);
+    highscores = highscores.slice(0, 5);
+
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    // TODO: Display highscores to the user
 }
