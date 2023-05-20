@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  color: white; /* sets the default text color to white for improved visibility */
+}
+
+body {
+    background-image: url('chalkboardbackround.jpeg');  
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+body {
+    display: flex;
+    justify-content: space-around;  /* distributes remaining space evenly around the items */
+    align-items: center;  /* vertically aligns items in their containers */
+}
+
+#quiz-content {
+    flex: 1;  /* takes up the remaining space after accounting for other elements */
+    margin-right: 2rem;  /* adds some space between the quiz content and the high scores */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#start-quiz {
+    margin-top: 1rem; /* Adjust as necessary */
+}
+
+#main-content {
+    display: flex;  /* makes the container a flex container, allowing for flexible layouts */
+    flex-direction: column;  /* stacks child elements vertically */
+    align-items: center;  /* centers child elements horizontally */
+    justify-content: center;  /* centers child elements vertically */
+    flex: 1;  /* allows the container to grow and shrink as necessary to take up available space */
+}
+
+#right-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;  /* adjust as needed to control the width of the right panel */
+}
+
+#timer, #highscores, #quiz-content, #header-container {
+    border: 2px solid white;  /* creates a white border around the timer and highscores sections */
+    border-radius: 10px;  /* rounds the corners of these sections */
+    padding: 1rem;  /* adds some space around the content within these sections */
+    width: 100%;  /* makes these sections take up the full width of their container */
+    margin-bottom: 1rem;  /* adds some space between these sections */
+    text-align: center;  /* centers the text within these sections */
+}
