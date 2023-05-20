@@ -97,5 +97,31 @@ function endQuiz() {
 
     localStorage.setItem("highscores", JSON.stringify(highscores));
 
-    // TODO: Display highscores to the user
+    // Displays highscores to the user
+    displayHighscores();
 }
+
+function displayHighscores() {
+    // Retrieve highscores from local storage
+    let highscores = localStorage.getItem("highscores");
+    if (!highscores) {
+        highscores = [];
+    } else {
+        highscores = JSON.parse(highscores);
+    }
+
+    // Get the highscores list element
+    let highscoresList = document.getElementById('highscores-list');
+
+    // Clear the list
+    highscoresList.innerHTML = "";
+
+    // Insert high scores into the list
+    for(let i = 0; i < highscores.length; i++) {
+        let li = document.createElement('li');
+        li.innerText = highscores[i].initials + ": " + highscores[i].score;
+        highscoresList.appendChild(li);
+    }
+}
+
+displayHighscores();
