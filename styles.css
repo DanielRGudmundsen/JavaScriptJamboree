@@ -1,61 +1,82 @@
-*,
-*::before,
-*::after {
-  color: white; /* sets the default text color to white for improved visibility */
+*, *::before, *::after {
+    font-family: "chalky", sans-serif; /* sets the default font to Chalky */
+    color: white; /* sets the default text color to white for improved visibility */
 }
 
 body {
+    display: flex;
+    justify-content: space-between;  /* distributes remaining space evenly around the items */
+    align-items: center;  /* vertically aligns items in their containers */
     background-image: url('chalkboardbackround.jpeg');  
     background-size: cover; 
     background-repeat: no-repeat; 
 }
 
-body {
-    display: flex;
-    justify-content: space-around;  /* distributes remaining space evenly around the items */
-    align-items: center;  /* vertically aligns items in their containers */
+button {
+    padding: 1vw;  /* Adjust as necessary */ 
+    border: .75vw solid rgb(113, 74, 23);  /* Adjust as necessary */ 
+    Border-radius: .6vw;  /* Adjust as necessary */
+    box-shadow: 0 0 1vw rgb(255, 255, 255);  /* Adjust as necessary */
+    background-image: url('button.jpeg');
+    background-size: cover; /* scales the image to fit the container */
+    background-repeat: no-repeat; /* This prevents the image from repeating */
+    font-size: 4vw;
+    padding: 1;
 }
 
-#quiz-content {
-    flex: 1;  /* takes up the remaining space after accounting for other elements */
-    margin-right: 2rem;  /* adds some space between the quiz content and the high scores */
+#main-content, #right-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#main-content {
+    flex: 1;  /* allows the container to grow and shrink as necessary to take up available space */
+}
+
+#quiz-content, #header-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;  /* makes these sections take up the full width of their container */
 }
 
 #header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    font-size: 5vw; 
+}
+
+#right-panel {
+    width: 20%;  /* adjust as needed to control the width of the right panel */
+}
+
+#highscores-list {
+    list-style-type: none;  /* removes the bullet points from the list */
+    padding-left: 0;  /* removes the space from bullet points from the list */
+    text-align: center;  /* centers the text in the list */
 }
 
 #start-quiz {
     margin-top: 1rem; /* Adjust as necessary */
 }
 
-#main-content {
-    display: flex;  /* makes the container a flex container, allowing for flexible layouts */
-    flex-direction: column;  /* stacks child elements vertically */
-    align-items: center;  /* centers child elements horizontally */
-    justify-content: center;  /* centers child elements vertically */
-    flex: 1;  /* allows the container to grow and shrink as necessary to take up available space */
+#quiz-content {
+    font-size: 4.5vw;  /* Adjust as necessary */
 }
 
-#right-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;  /* adjust as needed to control the width of the right panel */
+#timer {
+    font-size: 3vw;  /* Adjust as necessary */
 }
 
-#timer, #highscores, #quiz-content, #header-container {
-    border: 2px solid white;  /* creates a white border around the timer and highscores sections */
-    border-radius: 10px;  /* rounds the corners of these sections */
-    padding: 1rem;  /* adds some space around the content within these sections */
-    width: 100%;  /* makes these sections take up the full width of their container */
-    margin-bottom: 1rem;  /* adds some space between these sections */
-    text-align: center;  /* centers the text within these sections */
+#highscores {
+    font-size: 3vw;  /* Adjust as necessary */
 }
+
+#highscores-list li {
+    font-size: 2vw;  /* Adjust as necessary */
+}
+
+/* to do find a way to remove the space above the Javascript Jamboree and questions/finalscore, Turn the answer buttons into a 2x2 grid, Put the right side into a chalckboard, time left flash, make the time and higcores go on bottom if viweing on phone?  */
+```
