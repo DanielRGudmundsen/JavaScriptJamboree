@@ -17,6 +17,8 @@ document.getElementById('start-quiz').addEventListener('click', startQuiz);
 
 function startQuiz() {
     console.log("Quiz Started!");
+    // Hide start button
+    document.getElementById('start-quiz').style.display = 'none';
     // Load first question
     loadQuestion(currentQuestionIndex);
     // Start timer
@@ -99,6 +101,28 @@ function endQuiz() {
 
     // Displays highscores to the user
     displayHighscores();
+
+    // Create Try Again button
+    let tryAgainButton = document.createElement('button');
+    tryAgainButton.innerText = 'Try Again';
+    tryAgainButton.id = 'try-again';
+    tryAgainButton.addEventListener('click', function() {
+        // Reset score and time
+        score = 0;
+        timeLeft = 60; // or however long you want the quiz to be
+
+        // Reset question index
+        currentQuestionIndex = 0;
+
+        // Start quiz again
+        startQuiz();
+
+        // Remove Try Again button
+        tryAgainButton.style.display = 'none';
+    });
+
+    // Append Try Again button to body or to a specific container
+    quizContent.appendChild(tryAgainButton);
 }
 
 function displayHighscores() {
