@@ -16,12 +16,17 @@ button {
     padding: 1vw;  /* Adjust as necessary */ 
     border: .75vw solid rgb(113, 74, 23);  /* Adjust as necessary */ 
     Border-radius: .6vw;  /* Adjust as necessary */
-    box-shadow: 0 0 1vw rgb(255, 255, 255);  /* Adjust as necessary */
     background-image: url('button.jpeg');
     background-size: cover; /* scales the image to fit the container */
     background-repeat: no-repeat; /* This prevents the image from repeating */
     font-size: 2vw;
     padding: 1;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    box-shadow: 0 0 1vw rgb(255, 255, 255);  /* Adjust as necessary */
 }
 
 #main-content, #right-panel {

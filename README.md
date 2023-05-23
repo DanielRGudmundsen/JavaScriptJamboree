@@ -7,7 +7,6 @@ This repository contains an interactive JavaScript quiz game. Users answer a ser
 ## Features
 
 - **Multiple choice questions**: Each question offers four possible answers.
-- **Score based on speed**: The faster you answer, the more points you earn.
 - **Penalty for wrong answers**: Answer incorrectly and you'll lose some time.
 - **High score list**: Enter your initials at the end of the quiz to save your score.
 
