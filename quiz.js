@@ -1,18 +1,64 @@
-// Placeholder questions
+// Array containing quiz questions, answers, and correct answers
 let questions = [
     {
-        question: "Question 1?",
-        answers: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-        correctAnswer: "Answer 1"
+        question: "What does the '===' operator do in JavaScript?",
+        answers: ["A. Adds values", "B. Subtracts values", "C. Checks for both equal value and equal type", "D. Checks for equal value"],
+        correctAnswer: "C. Checks for both equal value and equal type"
     },
-    // More questions...
+    {
+        question: "How can you declare a variable in JavaScript?",
+        answers: ["A. variable x;", "B. let x;", "C. declare x;", "D. var x;"],
+        correctAnswer: "D. var x;"
+    },
+    {
+        question: "What is a correct way to define a JavaScript array?",
+        answers: ["A. let x = [1, 2, 3];", "B. let x = 1,2,3;", "C. let x = array(1, 2, 3);", "D. let x = (1, 2, 3);"],
+        correctAnswer: "A. let x = [1, 2, 3];"
+    },
+    {
+        question: "What keyword is used to define a function in JavaScript?",
+        answers: ["A. func", "B. define", "C. method", "D. function"],
+        correctAnswer: "D. function"
+    },
+    {
+        question: "How do you call a function named 'myFunction' in JavaScript?",
+        answers: ["A. myFunction call;", "B. myFunction();", "C. call myFunction;", "D. Call.myFunction();"],
+        correctAnswer: "B. myFunction();"
+    },
+    {
+        question: "Which built-in method combines the text of two strings and returns a new string?",
+        answers: ["A. append()", "B. concat()", "C. attach()", "D. assemble()"],
+        correctAnswer: "B. concat()"
+    },
+    {
+        question: "What is the correct way to write a JavaScript object?",
+        answers: ["A. let obj = [name: 'John', age: 30];", "B. let obj = {name = 'John', age = 30};", "C. let obj = {name: 'John', age = 30};", "D. let obj = (name: 'John', age = 30);"],
+        correctAnswer: "C. let obj = {name: 'John', age = 30};"
+    },
+    {
+        question: "How can you add a comment in JavaScript?",
+        answers: ["A. ##", "B. /* */", "C. <!-- -->", "D. //"],
+        correctAnswer: ["B. /* */", "D. //"]
+    },    
+    {
+        question: "Which statement is used to stop and exit a loop in JavaScript?",
+        answers: ["A. stop;", "B. break;", "C. halt;", "D. exit;"],
+        correctAnswer: "B. break;"
+    },
+    {
+        question: "What is a promise in JavaScript?",
+        answers: ["A. A block of code that will execute later, if certain conditions are met", "B. A data type for handling values that may not be available yet", "C. An object that may produce a single value sometime in the future", "D. An error handling construct"],
+        correctAnswer: "C. An object that may produce a single value sometime in the future"
+    },
 ];
 
+// Initialize variables
 let currentQuestionIndex = 0;
 let timer = null;
 let timeLeft = 0;
 let score = 0;
 
+// Start quiz when the "Start Quiz" button is clicked
 document.getElementById('start-quiz').addEventListener('click', startQuiz);
 
 // Typekit font loader
@@ -25,6 +71,7 @@ document.getElementById('start-quiz').addEventListener('click', startQuiz);
     h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
 })(document);
 
+// Function to start the quiz
 function startQuiz() {
     console.log("Quiz Started!");
     // Hide start button
@@ -32,7 +79,7 @@ function startQuiz() {
     // Load first question
     loadQuestion(currentQuestionIndex);
     // Start timer
-    timeLeft = 60; // Set your quiz time
+    timeLeft = 120; // Set quiz time
     timer = setInterval(function() {
         if (timeLeft <= 0) {
             endQuiz();
@@ -43,6 +90,7 @@ function startQuiz() {
     }, 1000);
 }
 
+// Function to load a question
 function loadQuestion(index) {
     let question = questions[index];
     let quizContent = document.getElementById('quiz-content');
@@ -55,6 +103,10 @@ function loadQuestion(index) {
     questionElement.innerText = question.question;
     quizContent.appendChild(questionElement);
 
+    // Create answer grid container
+    let answerGrid = document.createElement('div');
+    answerGrid.className = 'answer-grid';
+
     // Show answers
     for(let i = 0; i < question.answers.length; i++) {
         let answerButton = document.createElement('button');
@@ -62,10 +114,14 @@ function loadQuestion(index) {
         answerButton.addEventListener('click', function() {
             checkAnswer(question, question.answers[i]);
         });
-        quizContent.appendChild(answerButton);
+        answerGrid.appendChild(answerButton);
     }
+
+    // Append answer grid to quiz content
+    quizContent.appendChild(answerGrid);
 }
 
+// Function to check the selected answer
 function checkAnswer(question, answer) {
     if(question.correctAnswer === answer) {
         score += 10; // add points to the score for a correct answer
@@ -82,6 +138,7 @@ function checkAnswer(question, answer) {
     }
 }
 
+// Function to end the quiz
 function endQuiz() {
     clearInterval(timer);
     console.log("Quiz Ended!");
@@ -135,6 +192,7 @@ function endQuiz() {
     quizContent.appendChild(tryAgainButton);
 }
 
+// Display highscores to the user
 function displayHighscores() {
     // Retrieve highscores from local storage
     let highscores = localStorage.getItem("highscores");
@@ -158,4 +216,5 @@ function displayHighscores() {
     }
 }
 
+// Initial display of highscores
 displayHighscores();

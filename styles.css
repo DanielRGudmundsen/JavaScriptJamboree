@@ -20,7 +20,7 @@ button {
     background-image: url('button.jpeg');
     background-size: cover; /* scales the image to fit the container */
     background-repeat: no-repeat; /* This prevents the image from repeating */
-    font-size: 4vw;
+    font-size: 2vw;
     padding: 1;
 }
 
@@ -40,12 +40,12 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;  /* makes these sections take up the full width of their container */
 }
 
 #header-container {
-    font-size: 5vw; 
+    font-size: 3vw; 
 }
 
 #right-panel {
@@ -58,25 +58,25 @@ button {
     text-align: center;  /* centers the text in the list */
 }
 
-#start-quiz {
-    margin-top: 1rem; /* Adjust as necessary */
-}
-
 #quiz-content {
-    font-size: 4.5vw;  /* Adjust as necessary */
+    font-size: 3vw;  /* Adjust as necessary */
 }
 
 #timer {
-    font-size: 3vw;  /* Adjust as necessary */
+    font-size: 2.5vw;  /* Adjust as necessary */
 }
 
 #highscores {
-    font-size: 3vw;  /* Adjust as necessary */
+    font-size: 2.5vw;  /* Adjust as necessary */
 }
 
 #highscores-list li {
     font-size: 2vw;  /* Adjust as necessary */
 }
 
-/* to do find a way to remove the space above the Javascript Jamboree and questions/finalscore, Turn the answer buttons into a 2x2 grid, Put the right side into a chalckboard, time left flash, make the time and higcores go on bottom if viweing on phone?  */
-```
+.answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75vw; /* adjust this value as needed for spacing between buttons */
+    width: 100%; /* adjust as needed */
+}
