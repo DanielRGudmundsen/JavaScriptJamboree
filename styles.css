@@ -80,3 +80,10 @@ button {
     gap: 1.75vw; /* adjust this value as needed for spacing between buttons */
     width: 100%; /* adjust as needed */
 }
+
+#score-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25vw;
+}

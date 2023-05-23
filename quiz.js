@@ -8,7 +8,7 @@ let questions = [
     {
         question: "How can you declare a variable in JavaScript?",
         answers: ["A. variable x;", "B. let x;", "C. declare x;", "D. var x;"],
-        correctAnswer: "D. var x;"
+        correctAnswer: ["B. let x;","D. var x;"]
     },
     {
         question: "What is a correct way to define a JavaScript array?",
@@ -123,11 +123,21 @@ function loadQuestion(index) {
 
 // Function to check the selected answer
 function checkAnswer(question, answer) {
-    if(question.correctAnswer === answer) {
+    let scoreDisplay = document.getElementById('score-display');
+    let resultDisplay = document.getElementById('result-display');
+
+    if(Array.isArray(question.correctAnswer) ? question.correctAnswer.includes(answer) : question.correctAnswer === answer) {
         score += 10; // add points to the score for a correct answer
+        resultDisplay.style.color = 'green';
+        resultDisplay.innerText = '+10';
     } else {
         timeLeft -= 10; // subtract time for an incorrect answer
+        resultDisplay.style.color = 'red';
+        resultDisplay.innerText = '-10';
     }
+
+    // Update total score
+    scoreDisplay.innerText = 'Score: ' + score;
 
     // Move on to the next question
     currentQuestionIndex++;
@@ -137,6 +147,7 @@ function checkAnswer(question, answer) {
         loadQuestion(currentQuestionIndex);
     }
 }
+
 
 // Function to end the quiz
 function endQuiz() {
@@ -148,8 +159,11 @@ function endQuiz() {
     quizContent.innerHTML = "Your final score is: " + score;
 
     // Get user initials
-    let initials = prompt("Enter your initials:");
+let initials = prompt("Enter your initials (2 letters max):");
 
+if (initials) {
+    initials = initials.toUpperCase().substring(0, 2);
+    
     // Save score to local storage
     let highscores = localStorage.getItem("highscores");
     if(!highscores) {
@@ -165,14 +179,18 @@ function endQuiz() {
     highscores = highscores.slice(0, 5);
 
     localStorage.setItem("highscores", JSON.stringify(highscores));
-
+    
     // Displays highscores to the user
     displayHighscores();
+} else {
+    // The user selected cancel or didn't provide any initials, we just end the quiz without saving the score
+    console.log("Quiz Ended without saving score!");
+}
 
     // Create Try Again button
     let tryAgainButton = document.createElement('button');
     tryAgainButton.innerText = 'Try Again';
-    tryAgainButton.id = 'try-again';
+    tryAgainButton.id = 'try-again';  
     tryAgainButton.addEventListener('click', function() {
         // Reset score and time
         score = 0;
